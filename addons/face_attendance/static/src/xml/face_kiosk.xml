@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="face_attendance.FaceKiosk" owl="1">
+        <div class="o_face_kiosk_container">
+            <h1 style="color: #875A7B;">KIOSK ĐIỂM DANH KHUÔN MẶT</h1>
+            
+            <div t-if="state.loading" class="alert alert-info">
+                Đang khởi tạo AI...
+            </div>
+            
+            <div class="video_wrapper" style="border: 5px solid #875A7B; display: inline-block;">
+                <video id="kiosk_video" width="640" height="480" autoplay="1" muted="1" playsinline="1"></video>
+            </div>
+
+            <div t-if="state.lastEmployee" class="mt-4">
+                <h2 class="text-success">Xin chào, <t t-esc="state.lastEmployee"/>!</h2>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_face_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.face.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Face Recognition" name="face_recognition">
+                    <group>
+			<group string="Dữ liệu khuôn mặt">
+    				<field name="face_encoding" 
+           				widget="text" 
+           				force_save="1" 
+           				placeholder="Mã hóa khuôn mặt sẽ hiện ở đây..."/>
+    
+   				 <button name="action_scan_face"
+           				 string="Mở Camera quét mặt"
+           				 class="oe_highlight action_scan_face_btn"
+           				 icon="fa-camera"/>
+            
+   				 <button name="action_save_face"
+          				 string="Xác nhận &amp; Lưu khuôn mặt"
+        			         class="oe_highlight action_save_face_btn"
+					 icon="fa-save"
+            			 	 style="margin-top: 10px;"/>
+			</group>
+                        <group string="Preview Camera">
+                            <div id="face_camera_container" style="position: relative; width: 400px; height: 300px; background: #000; border: 2px solid #875A7B;">
+                                <video id="video" width="400" height="300" autoplay="1" muted="1" playsinline="1" style="position: absolute; top: 0; left: 0;"></video>
+                                </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

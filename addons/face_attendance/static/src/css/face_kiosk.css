@@ -1,0 +1,60 @@
+/* Container chính bao phủ toàn màn hình */
+.o_face_kiosk_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f7f6;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Tiêu đề */
+.o_face_kiosk_container h1 {
+    color: #875A7B;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Khung bọc Video để tạo hiệu ứng bo góc và đổ bóng */
+.video_wrapper {
+    position: relative;
+    border: 8px solid #875A7B;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+/* Kích thước video */
+#kiosk_video {
+    width: 640px;
+    height: 480px;
+    display: block;
+    object-fit: cover;
+}
+
+/* Thông báo trạng thái */
+.alert-info {
+    background-color: #e7f3fe;
+    color: #31708f;
+    padding: 15px 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Thông báo khi nhận diện thành công */
+.text-success {
+    color: #28a745 !important;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
