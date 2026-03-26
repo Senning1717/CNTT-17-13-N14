@@ -5,7 +5,7 @@
 </h2>
 
 <h2 align="center">
-    ERP Platform – Quản lý Chấm công và Tiền lương
+    ERP Platform – Quản lý Chấm công và Tính lương
 </h2>
 
 <div align="center">
@@ -63,6 +63,9 @@ Thay vì xử lý thủ công hoặc rời rạc bằng Excel, hệ thống cung
 
 #### Dashboard chấm công
 <img width="1902" height="931" alt="image" src="/assets/assets_nhan_su/dashboard_cham_cong.png" />
+
+#### Dashboard chấm công bằng khuân mặt
+<img width="1902" height="931" alt="image"  src="\assets\assets_cham_cong/cham_cong_bang_khuan_mat.png" />
 
 #### Trang quản lý đơn vị
 <img width="1902" height="931" alt="image" src="/assets/assets_nhan_su/don_vi.png" />
@@ -122,8 +125,6 @@ Thay vì xử lý thủ công hoặc rời rạc bằng Excel, hệ thống cung
 #### Dashboard lương
 <img width="1902" height="931" alt="image" src="/assets/assets_tinh_luong/Dashboard_luong.png" />
 
-#### Gửi email khi có phiếu lương
-<img width="1902" height="931" alt="image" src="/assets/assets_tinh_luong/email_phieu_luong.png" />
 
 
 ## ⚙️ 4. Cài đặt hệ thống
@@ -148,8 +149,8 @@ build-essential libffi-dev zlib1g-dev libpq-dev
 ### 4.2. Tải project
 
 ```bash
-git clone https://github.com/HiepV7413/TTDN-16-02-N3.git
-cd TTDN-16-02-N3
+git clone https://github.com/Senning1717/CNTT-17-13-N14
+cd CNTT-17-13-N14
 ```
 
 ### 4.3. Khởi tạo môi trường ảo Python
