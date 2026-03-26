@@ -1,0 +1,83 @@
+/** @odoo-module **/
+
+(function() {
+    let currentStream = null;
+    let scanInterval = null;
+
+    // Hàm giải phóng hoàn toàn Camera
+    function clearCamera() {
+        if (scanInterval) clearInterval(scanInterval);
+        if (currentStream) {
+            currentStream.getTracks().forEach(track => track.stop());
+            currentStream = null;
+        }
+        const video = document.getElementById('video');
+        if (video) {
+            video.srcObject = null;
+            video.style.border = "5px solid #ccc";
+        }
+    }
+
+    document.addEventListener('click', async function (ev) {
+        const scanBtn = ev.target.closest('.action_scan_face_btn');
+        const saveBtn = ev.target.closest('.action_save_face_btn');
+
+        if (scanBtn) {
+            ev.preventDefault();
+            clearCamera(); // Luôn dọn dẹp luồng cũ trước khi mở mới
+
+            const video = document.getElementById('video');
+            const MODEL_URL = '/face_attendance/static/src/models';
+
+            try {
+                await Promise.all([
+                    faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+                    faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+                    faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL)
+                ]);
+
+                currentStream = await navigator.mediaDevices.getUserMedia({ video: {} });
+                video.srcObject = currentStream;
+
+                video.onplaying = () => {
+                    scanInterval = setInterval(async () => {
+                        if (!currentStream || !currentStream.active) return;
+                        
+                        const detection = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
+                            .withFaceLandmarks()
+                            .withFaceDescriptor();
+
+                        if (detection) {
+                            video.style.border = "5px solid #28a745";
+                            window.currentDescriptor = detection.descriptor;
+                        } else {
+                            video.style.border = "5px solid #dc3545";
+                        }
+                    }, 250);
+                };
+            } catch (err) {
+                alert("Không thể mở Camera. Hãy chắc chắn bạn dùng localhost hoặc HTTPS!");
+            }
+        }
+
+        if (saveBtn) {
+            ev.preventDefault();
+            if (!window.currentDescriptor) {
+                alert("AI chưa bắt được mặt!");
+                return;
+            }
+
+            const targetField = document.querySelector('[name="face_encoding"] textarea') || 
+                                document.querySelector('textarea[name="face_encoding"]');
+
+            if (targetField) {
+                targetField.value = JSON.stringify(Array.from(window.currentDescriptor));
+                targetField.dispatchEvent(new Event('input', { bubbles: true }));
+                targetField.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                alert("Trích xuất xong! Hãy nhấn nút Save (hình đám mây) trên Odoo.");
+                clearCamera(); // Tắt cam ngay sau khi lấy dữ liệu xong
+            }
+        }
+    });
+})();

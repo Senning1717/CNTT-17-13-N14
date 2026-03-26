@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_face_attendance_kiosk" model="ir.actions.client">
+        <field name="name">Máy Chấm Công AI</field>
+        <field name="tag">face_attendance_kiosk_action</field>
+    </record>
+
+    <menuitem id="menu_face_attendance_root" 
+              name="Chấm Công AI" 
+              sequence="10"/>
+
+    <menuitem id="menu_face_scan" 
+              name="Quét Khuôn Mặt" 
+              parent="menu_face_attendance_root" 
+              action="action_face_attendance_kiosk" 
+              sequence="10"/>
+</odoo>

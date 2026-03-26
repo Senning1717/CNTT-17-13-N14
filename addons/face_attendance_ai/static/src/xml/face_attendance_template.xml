@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="FaceAttendanceKiosk">
+        <div class="o_attendance_kiosk_mode_container">
+            <div class="container mt-4 text-center">
+                <h2>MÁY CHẤM CÔNG KHUÔN MẶT</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <video id="video" width="640" height="480" autoplay="true" 
+                               style="border: 5px solid #ccc; border-radius: 10px;"></video>
+                        <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+                        
+                        <div class="mt-3">
+                            <button id="btn-scan" class="btn btn-primary btn-lg">
+                                <i class="fa fa-camera"></i> QUÉT MẶT ĐIỂM DANH
+                            </button>
+                        </div>
+                        <div id="result-message" class="mt-3 alert" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
